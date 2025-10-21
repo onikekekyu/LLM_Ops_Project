@@ -8,10 +8,11 @@ import requests
 from chainlit.message import Message
 from transformers import AutoTokenizer
 
-from src.constants import ENDPOINT_ID, PROJECT_NUMBER
+from src.constants import ENDPOINT_ID, PROJECT_NUMBER, REGION
 
 MODEL_REPO_ID = "microsoft/Phi-3-mini-4k-instruct"
-ENDPOINT_URL = f"https://europe-west2-aiplatform.googleapis.com/v1/projects/{PROJECT_NUMBER}/locations/europe-west2/endpoints/{ENDPOINT_ID}:predict"
+# Build endpoint URL using configured region for flexibility
+ENDPOINT_URL = f"https://{REGION}-aiplatform.googleapis.com/v1/projects/{PROJECT_NUMBER}/locations/{REGION}/endpoints/{ENDPOINT_ID}:predict"
 
 
 @cl.set_starters  # type: ignore
