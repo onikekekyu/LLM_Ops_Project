@@ -24,22 +24,18 @@ def data_transformation_component(
     from datasets import Dataset
 
     def format_dataset_to_phi_messages(dataset: Dataset) -> Dataset:
-        """Format dataset to Phi messages structure."""
+        """Format dataset to Phi messages structure for French politics data."""
 
         def format_dataset(examples):
             """Format a single example to Phi messages structure."""
             converted_sample = [
-                {"role": "user", "content": examples["prompt"]},
-                {"role": "assistant", "content": examples["completion"]},
+                {"role": "user", "content": examples["question"]},
+                {"role": "assistant", "content": examples["reponse_langue_de_bois"]},
             ]
             return {"messages": converted_sample}
 
-        return (
-            dataset.rename_column("sentence", "prompt")
-            .rename_column("translation_extra", "completion")
-            .map(format_dataset)
-            .remove_columns(["prompt", "completion", "translation"])
-        )
+        # Map to the messages format and remove original columns as they're now in messages
+        return dataset.map(format_dataset).remove_columns(["question", "reponse_langue_de_bois"])
 
     logging.basicConfig(level=logging.INFO)
     logger = logging.getLogger(__name__)
