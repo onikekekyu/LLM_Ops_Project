@@ -5,9 +5,10 @@ from pathlib import Path
 import typer
 from google.cloud import aiplatform, storage
 
-from src.constants import BUCKET_NAME, PROJECT_ID, PROJECT_ROOT_PATH, REGION
+from src.constants import PROJECT_ID, REGION
 
-HANDLER_PATH = PROJECT_ROOT_PATH / "src" / "handler.py"
+# Handler path relative to the current script
+HANDLER_PATH = Path(__file__).parents[1] / "src" / "handler.py"
 
 
 def register_model_with_custom_handler(
@@ -20,11 +21,15 @@ def register_model_with_custom_handler(
     """Registers a model with a custom handler in Vertex AI."""
     aiplatform.init(project=PROJECT_ID, location=REGION)
 
+    # Extract bucket name and blob path from GCS URI
+    # Convert gs://bucket-name/path/to/model to (bucket-name, path/to/model)
+    bucket_name = model_uri.replace("gs://", "").split("/")[0]
+    blob_path = "/".join(model_uri.replace("gs://", "").split("/")[1:]) + "/handler.py"
+    
     # Upload the custom handler to GCS
-    blob_path = "/".join(model_uri.split("/")[3:]) + "/handler.py"
     (
         storage.Client()
-        .bucket(BUCKET_NAME)
+        .bucket(bucket_name)
         .blob(blob_path)
         .upload_from_filename(str(handler_path))
     )
