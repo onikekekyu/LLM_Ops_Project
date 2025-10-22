@@ -20,16 +20,16 @@ async def set_starters():
     """Set starter messages for the Chainlit app."""
     return [
         cl.Starter(
-            label="Message #1 - Lightsaber talk",
-            message="Paint the handle of your lightsaber on your hip dull gray.",
+            label="Message #1 - Chocolatine ?",
+            message="Monsieur le Ministre, le débat fait rage : le pain au chocolat doit-il officiellement être renommé 'chocolatine' sur l'ensemble du territoire pour apaiser les tensions régionales ?",
         ),
         cl.Starter(
-            label="Message #2 - Not very nice",
-            message="He is not very nice.",
+            label="Message #2 - Raclette > Dinde pour Noël",
+            message="Rédigez un discours solennel pour annoncer à ma famille que, cette année, il n'y aura pas de dinde à Noël, mais une raclette.",
         ),
         cl.Starter(
-            label="Message #3 - Motivational quote",
-            message="You must believe in the force.",
+            label="Message #3 - Trop de pigeons dans la ville",
+            message="Que comptez-vous faire face à la prolifération inquiétante des pigeons dans nos villes ? Faut-il ouvrir des négociations ?",
         ),
     ]
 
