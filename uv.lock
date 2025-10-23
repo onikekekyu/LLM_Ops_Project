@@ -1,5 +1,5 @@
 version = 1
-revision = 2
+revision = 3
 requires-python = "==3.11.6"
 
 [[package]]
@@ -112,6 +112,7 @@ dependencies = [
     { name = "langchain-google-genai" },
     { name = "langchain-google-vertexai" },
     { name = "langchain-huggingface" },
+    { name = "langfuse" },
     { name = "pandas" },
     { name = "peft" },
     { name = "pydantic" },
@@ -149,6 +150,7 @@ requires-dist = [
     { name = "langchain-google-genai", specifier = ">=2.1.12" },
     { name = "langchain-google-vertexai", specifier = ">=2.1.2" },
     { name = "langchain-huggingface", specifier = ">=0.3.1" },
+    { name = "langfuse", specifier = ">=3.8.1" },
     { name = "pandas", specifier = ">=2.3.2" },
     { name = "peft", specifier = "==0.13.2" },
     { name = "pydantic", specifier = "==2.10.1" },
@@ -240,6 +242,15 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/5a/b0/1367933a8532ee6ff8d63537de4f1177af4bff9f3e829baf7331f595bb24/attrs-25.3.0.tar.gz", hash = "sha256:75d7cefc7fb576747b2c81b4442d4d4a1ce0900973527c011d1030fd3bf4af1b", size = 812032, upload-time = "2025-03-13T11:10:22.779Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/77/06/bb80f5f86020c4551da315d78b3ab75e8228f89f0162f2c3a819e407941a/attrs-25.3.0-py3-none-any.whl", hash = "sha256:427318ce031701fea540783410126f03899a97ffc6f61596ad581ac2e40e3bc3", size = 63815, upload-time = "2025-03-13T11:10:21.14Z" },
+]
+
+[[package]]
+name = "backoff"
+version = "2.2.1"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/47/d7/5bbeb12c44d7c4f2fb5b56abce497eb5ed9f34d85701de869acedd602619/backoff-2.2.1.tar.gz", hash = "sha256:03f829f5bb1923180821643f8753b0502c3b682293992485b0eef2807afa5cba", size = 17001, upload-time = "2022-10-05T19:19:32.061Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/df/73/b6e24bd22e6720ca8ee9a85a0c4a2971af8497d8f3193fa05390cbd46e09/backoff-2.2.1-py3-none-any.whl", hash = "sha256:63579f9a0628e06278f7e47b7d7d5b6ce20dc65c5e96a6f3ca99a6adca0396e8", size = 15148, upload-time = "2022-10-05T19:19:30.546Z" },
 ]
 
 [[package]]
@@ -1500,6 +1511,27 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/11/43/dcda8fd25f0b19cb2835f2f6bb67f26ad58634f04ac2d8eae00526b0fa55/langchain_text_splitters-0.3.11.tar.gz", hash = "sha256:7a50a04ada9a133bbabb80731df7f6ddac51bc9f1b9cab7fa09304d71d38a6cc", size = 46458, upload-time = "2025-08-31T23:02:58.316Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/58/0d/41a51b40d24ff0384ec4f7ab8dd3dcea8353c05c973836b5e289f1465d4f/langchain_text_splitters-0.3.11-py3-none-any.whl", hash = "sha256:cf079131166a487f1372c8ab5d0bfaa6c0a4291733d9c43a34a16ac9bcd6a393", size = 33845, upload-time = "2025-08-31T23:02:57.195Z" },
+]
+
+[[package]]
+name = "langfuse"
+version = "3.8.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "backoff" },
+    { name = "httpx" },
+    { name = "openai" },
+    { name = "opentelemetry-api" },
+    { name = "opentelemetry-exporter-otlp-proto-http" },
+    { name = "opentelemetry-sdk" },
+    { name = "packaging" },
+    { name = "pydantic" },
+    { name = "requests" },
+    { name = "wrapt" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/ca/0b/81f9c6a982f79c112b7f10bfd6f3a4871e6fa3e4fe8d078b6112abfd3c08/langfuse-3.8.1.tar.gz", hash = "sha256:2464ae3f8386d80e1252a0e7406e3be4121e792a74f1b1c21d9950f658e5168d", size = 197401, upload-time = "2025-10-22T13:35:52.572Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/b2/f9/538af0fc4219eb2484ba319483bce3383146f7a0923d5f39e464ad9a504b/langfuse-3.8.1-py3-none-any.whl", hash = "sha256:5b94b66ec0b0de388a8ea1f078b32c1666b5825b36eab863a21fdee78c53b3bb", size = 364580, upload-time = "2025-10-22T13:35:50.597Z" },
 ]
 
 [[package]]
