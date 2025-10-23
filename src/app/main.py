@@ -1,4 +1,16 @@
-"""Chainlit app integrating a custom LLM chat model API."""
+"""Chainlit app integrating a custom LLM chat model API with monitoring.
+
+This app uses:
+- Chainlit for the chat interface
+- Google Cloud Vertex AI for model inference
+- Langfuse for monitoring and observability
+
+The @monitor_political_response decorator automatically tracks:
+- User questions and model responses
+- Response time
+- Politeness score (diplomatic language)
+- Political jargon score
+"""
 
 import re
 import subprocess
@@ -9,6 +21,7 @@ from chainlit.message import Message
 from transformers import AutoTokenizer
 
 from src.constants import ENDPOINT_ID, PROJECT_NUMBER, REGION
+from src.monitoring import monitor_political_response
 
 MODEL_REPO_ID = "microsoft/Phi-3-mini-4k-instruct"
 # Build endpoint URL using configured region for flexibility
@@ -59,8 +72,9 @@ def extract_response(generated_text: str) -> str:
     )[0]
 
 
+@monitor_political_response(name="political_response", model="phi-3-political")
 def call_model_api(message: Message) -> str:
-    """Call the custom LLM chat model API."""
+    """Call the custom LLM chat model API with monitoring."""
     print(f"\nEndpoint URL: {ENDPOINT_URL}")
     print(f"Project Number: {PROJECT_NUMBER}")
     print(f"Endpoint ID: {ENDPOINT_ID}")
